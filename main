@@ -1,0 +1,10 @@
+#!/bin/bash
+#PBS -l nodes=1:ppn=8,walltime=01:00:00
+#PBS -N app-dwinormalise
+#PBS -l vmem=16gb
+
+set -x
+set -e
+
+time singularity exec -e --nv docker://brainlife/mrtrix3:3.0.2 ./dwi-normalise.sh
+
