@@ -29,7 +29,7 @@ common="-nthreads $OMP_NUM_THREADS -quiet -force"
 echo "Performing intensity normalization (dwinormalise)..."
 
 ## create fa wm mask of input subject
-[ ! -f wm.mif ] && dwi2tensor -mask ${mask}.mif dwi.mif - $common | tensor2metric - -fa - $common | mrthreshold -abs 0.5 - wm.mif $common
+[ ! -f wm.mif ] && dwi2tensor -mask mask.mif dwi.mif - $common | tensor2metric - -fa - $common | mrthreshold -abs 0.5 - wm.mif $common
 
 ## normalize the 50th percentile intensity of generous FA white matter mask to 1000
 [ ! -f dwi_norm.mif ] && dwinormalise individual dwi.mif wm.mif dwi_norm.mif -intensity $NORM -percentile $PRCT $common
