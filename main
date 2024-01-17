@@ -6,5 +6,5 @@
 set -x
 set -e
 
-time singularity exec -e --nv docker://brainlife/mrtrix3:3.0.2 ./dwi-normalise.sh
+time singularity exec -e --nv docker://brainlife/mrtrix3:3.0.2 ./dwi-normalize.sh
 
