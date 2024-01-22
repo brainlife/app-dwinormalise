@@ -35,7 +35,7 @@ echo "Performing intensity normalization (dwinormalise)..."
 [ ! -f dwi_norm.mif ] && dwinormalise individual dwi.mif wm.mif dwi_norm.mif -intensity $NORM -percentile $PRCT $common
 
 # convert to nifti and save to output
-[ ! -f ./output/dwi.nii.gz ] && mrconvert dwi.mif ./output/dwi.nii.gz -export_grad_fsl ./output/dwi.bvecs ./output/dwi.bvals -export_grad_mrtrix dwi.b -json_export dwi.json $common
+[ ! -f ./output/dwi.nii.gz ] && mrconvert dwi_norm.mif ./output/dwi.nii.gz -export_grad_fsl ./output/dwi.bvecs ./output/dwi.bvals -export_grad_mrtrix dwi.b -json_export dwi.json $common
 
 
 if [ ! -f ./output/dwi.nii.gz ]; then
