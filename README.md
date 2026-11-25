@@ -10,7 +10,7 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-lightgrey.svg" alt="MIT license"></a>
 </p>
 
-## 🧠 At a glance
+## At a glance
 
 <!-- brainlife-app:begin (generated from the App manifest; edit the manifest, not this block) -->
 
@@ -20,26 +20,26 @@ Builds a brain mask (dwi2mask) and a white matter mask (FA > 0.5 from dwi2tensor
 
 | | |
 |---|---|
-| 📥 **Inputs** | `neuro/dwi` |
-| 📤 **Outputs** | `neuro/dwi` |
-| 🐳 **Container** | `brainlife/mrtrix3:3.0.2` |
-| ⚙️ **Resources** | 8 CPUs · 1 h walltime |
-| 🔗 **Run it** | [doi.org/10.25663/brainlife.app.806](https://doi.org/10.25663/brainlife.app.806) |
+| **Inputs** | `neuro/dwi` |
+| **Outputs** | `neuro/dwi` |
+| **Container** | `brainlife/mrtrix3:3.0.2` |
+| **Resources** | 8 CPUs · 1 h walltime |
+| **Run it** | [doi.org/10.25663/brainlife.app.806](https://doi.org/10.25663/brainlife.app.806) |
 
-#### 📥 Inputs
+#### Inputs
 
 | Input | Datatype | Required | Description |
 |---|---|---|---|
 | `dwi` | `neuro/dwi` | yes | DWI image with bvecs and bvals (sbref files are passed along but not used). |
 
-#### 📤 Outputs
+#### Outputs
 
 | Output | Datatype | Description |
 |---|---|---|
 | `output` | `neuro/dwi` | Intensity-normalised DWI with bvecs and bvals exported by MRtrix3. |
 
 <details>
-<summary><b>⚙️ Parameters</b> (2)</summary>
+<summary><b>Parameters</b> (2)</summary>
 
 | Parameter | Type | Default | Description |
 |---|---|---|---|
@@ -50,20 +50,20 @@ Builds a brain mask (dwi2mask) and a white matter mask (FA > 0.5 from dwi2tensor
 
 <!-- brainlife-app:end -->
 
-## 🚀 Running the App
+## Running the App
 
-### ☁️ On brainlife.io
+### On brainlife.io
 
 Open the App at [doi.org/10.25663/brainlife.app.806](https://doi.org/10.25663/brainlife.app.806), choose a `neuro/dwi` dataset, set the target intensity (`nval`, default 1000) and percentile (`prct`, default 50), and press **Execute**. The App writes a `neuro/dwi` dataset tagged `normalized` to your project. Use it before comparing DWI intensities across subjects or sessions.
 
-### 🔬 How it works
+### How it works
 
 1. The DWI is converted to MRtrix format with its gradients and a brain mask is computed with `dwi2mask`.
 2. A white matter mask is built by fitting a tensor (`dwi2tensor`), computing FA (`tensor2metric`) and keeping voxels with FA > 0.5 (`mrthreshold`).
 3. `dwinormalise individual` scales the image so that the `prct` percentile of the white matter b0 intensities equals `nval`.
 4. The normalised DWI is exported to NIfTI with FSL-format bvecs and bvals.
 
-### 💻 Locally
+### Locally
 
 You need [Singularity/Apptainer](https://apptainer.org/) and [`jq`](https://jqlang.github.io/jq/). The App runs in the `brainlife/mrtrix3:3.0.2` container.
 
@@ -88,7 +88,7 @@ You need [Singularity/Apptainer](https://apptainer.org/) and [`jq`](https://jqla
 
 The number of threads is taken from `OMP_NUM_THREADS` (8 if unset).
 
-## 📦 Outputs
+## Outputs
 
 ```text
 output/
@@ -97,11 +97,11 @@ output/
 └── dwi.bvals    b-values (FSL format)
 ```
 
-## 🩺 Troubleshooting
+## Troubleshooting
 
 - **`something went wrong. check logs`**: `output/dwi.nii.gz` was not produced. Check that the bvecs and bvals match the DWI (one entry per volume).
 
-## 📚 Citing
+## Citing
 
 > [!TIP]
 > If you use this App in your work, please cite the App, the software it builds on and brainlife.io (below). GitHub's **Cite this repository** button gives the App citation in APA and BibTeX.
@@ -111,12 +111,12 @@ output/
 - Hayashi S, Caron BA, Heinsfeld AS, et al. brainlife.io: a decentralized and open-source cloud platform to support neuroscience research. *Nature Methods* 21:809–813 (2024). [doi:10.1038/s41592-024-02237-2](https://doi.org/10.1038/s41592-024-02237-2)
 - Avesani P, McPherson B, Hayashi S, et al. The open diffusion data derivatives, brain data upcycling via integrated publishing of derivatives and reproducible open cloud services. *Scientific Data* 6:69 (2019). [doi:10.1038/s41597-019-0073-y](https://doi.org/10.1038/s41597-019-0073-y)
 
-## 👥 Authors
+## Authors
 
 - Brad Caron
 - Franco Pestilli (project director)
 
-## 💰 Funding
+## Funding
 
 [![Wellcome-226486/Z/22/Z](https://img.shields.io/badge/Wellcome-226486%2FZ%2F22%2FZ-purple.svg)](https://wellcome.org/)
 [![NIH-NINDS-U24NS140384](https://img.shields.io/badge/NIH_NINDS-U24NS140384-green.svg)](https://reporter.nih.gov/project-details/11261037)
@@ -135,6 +135,6 @@ output/
 
 <sub>brainlife.io is publicly funded, and acknowledging that support helps keep it running. This App was developed with support from Wellcome, the U.S. National Institutes of Health (including the BRAIN Initiative BRAIN CONNECTS program: The Axonal Projectome EXchange, U24NS140384, and the Center for Mesoscale Connectomics, UM1NS132207) and the U.S. National Science Foundation.</sub>
 
-## ⚖️ License
+## License
 
 MIT. MRtrix3 is distributed under the [Mozilla Public License 2.0](https://www.mrtrix.org/).
